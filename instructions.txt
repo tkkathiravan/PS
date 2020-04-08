@@ -1,5 +1,4 @@
 Instrucitons shows How to use github
-
 Git Notes
 
 Git manages a local database to manage files being staged and committed, pulled and psuhed and added etc.
@@ -59,3 +58,127 @@ Check status of ssh agent
 git clone repolink [ex: if HTTPS: https://github.com/tkkathiravan/PS.git] [IF: SSh: git@github.com:tkkathiravan/PS.git]
 
 git push origin master -- from the same local repository folder will push the content to the same folder in remote.
+
+Git fetch -- will peek into the remot repo to see what files are modified and download the changes to the git local Databse. but it didnt updates to the local repo folder.
+==========================================================================================================================
+kathi@KSH-PC MINGW64 /e/code/projects/PS (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        assets/
+        favicon.ico
+        images/
+        index.html
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+kathi@KSH-PC MINGW64 /e/code/projects/PS (master)
+$ git add .
+warning: LF will be replaced by CRLF in assets/css/font-awesome.min.css.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in assets/css/main.css.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in assets/fonts/fontawesome-webfont.svg.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in assets/js/jquery.min.js.
+The file will have its original line endings in your working directory
+
+kathi@KSH-PC MINGW64 /e/code/projects/PS (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   assets/css/font-awesome.min.css
+        new file:   assets/css/main.css
+        new file:   assets/fonts/FontAwesome.otf
+        new file:   assets/fonts/fontawesome-webfont.eot
+        new file:   assets/fonts/fontawesome-webfont.svg
+        new file:   assets/fonts/fontawesome-webfont.ttf
+        new file:   assets/fonts/fontawesome-webfont.woff
+        new file:   assets/fonts/fontawesome-webfont.woff2
+        new file:   assets/js/jquery.min.js
+        new file:   favicon.ico
+        new file:   images/bg.jpg
+        new file:   images/pic02.jpg
+        new file:   index.html
+
+
+kathi@KSH-PC MINGW64 /e/code/projects/PS (master)
+$ git commit -am "website files added"
+[master dcb1865] website files added
+ 13 files changed, 3905 insertions(+)
+ create mode 100644 assets/css/font-awesome.min.css
+ create mode 100644 assets/css/main.css
+ create mode 100644 assets/fonts/FontAwesome.otf
+ create mode 100644 assets/fonts/fontawesome-webfont.eot
+ create mode 100644 assets/fonts/fontawesome-webfont.svg
+ create mode 100644 assets/fonts/fontawesome-webfont.ttf
+ create mode 100644 assets/fonts/fontawesome-webfont.woff
+ create mode 100644 assets/fonts/fontawesome-webfont.woff2
+ create mode 100644 assets/js/jquery.min.js
+ create mode 100644 favicon.ico
+ create mode 100644 images/bg.jpg
+ create mode 100644 images/pic02.jpg
+ create mode 100644 index.html
+
+kathi@KSH-PC MINGW64 /e/code/projects/PS (master)
+$ git push origin/master
+fatal: 'origin/master' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+kathi@KSH-PC MINGW64 /e/code/projects/PS (master)
+$ git push origin master
+Enumerating objects: 21, done.
+Counting objects: 100% (21/21), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (19/19), done.
+Writing objects: 100% (20/20), 5.77 MiB | 1.68 MiB/s, done.
+Total 20 (delta 0), reused 0 (delta 0)
+To github.com:tkkathiravan/PS.git
+   9733588..dcb1865  master -> master
+
+kathi@KSH-PC MINGW64 /e/code/projects/PS (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+kathi@KSH-PC MINGW64 /e/code/projects/PS (master)
+$ git fetch
+Warning: Permanently added the RSA host key for IP address '52.64.108.95' to the list of known hosts.
+remote: Enumerating objects: 8, done.
+remote: Counting objects: 100% (8/8), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 6 (delta 3), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (6/6), done.
+From github.com:tkkathiravan/PS
+   dcb1865..67b58bf  master     -> origin/master
+
+kathi@KSH-PC MINGW64 /e/code/projects/PS (master)
+$ git status
+On branch master
+Your branch is behind 'origin/master' by 2 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+nothing to commit, working tree clean
+
+kathi@KSH-PC MINGW64 /e/code/projects/PS (master)
+$
+
+kathi@KSH-PC MINGW64 /e/code/projects/PS (master)
+==========================================================================================================================
+
+POINT TO REMEMBER
+
+WHEN A FILE IS MODIFIED LOCALLY - USE git add . to add stage the change  and the use git commit to confirm the change.
