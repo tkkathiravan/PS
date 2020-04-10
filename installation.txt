@@ -1,0 +1,79 @@
+Lets install something new
+
+create storage account
+=======================
+
+$rg = get-azurermstorageaccount
+
+New-AzureRmStorageAccount -ResourceGroupName $rg.ResourceGroupName -Name "demostrgactth1" -SkuName Standard_LRS -Kind StorageV2 -Tag @{Name="demostrgactth1";Resourcetype="Storageaccount"} -Verbose
+
+
+CREATE BLOB CONTAINER
+=====================
+
+New-AzureRmStorageContainer -ResourceGroupName $rg.ResourceGroupName -StorageAccountName demostrgactth1 -Name demoblobtth1 -PublicAccess Blob -Verbose
+
+AZCOPY examples
+===============
+
+azcopy.exe /Source:https://strgacps.blob.core.windows.net/blobs1 /dest:"C:\Users\kathi\Downloads\blob images\downloadblob" /sourcekey:tRjrXGuunqD9oNsRlFz9qw5TwGVb7ZIBhh+zuH0ArF9Cw0IMyKhj7u+eJw7u66knpZUnmSa5VjdW0b+vtPawkw== /S
+
+
+.\AzCopy.exe /source:"C:\Users\kathi\Downloads\blob images\" /Dest:https://az100san.blob.core.windows.net/azsan100-images  /sourcekey:TXRVYD55r/57GxJxhVtL0NehMRfSuiA8uMsvZEoQ5SSveaRrp9E/al6fJk8C//dcMQduKRxMAzsxh40Y9Hh4zg== /S /sync
+
+.\AzCopy.exe /Source:"C:\Users\kathi\Downloads\blob images\cdnsyd" /dest:https://azcdnsg.blob.core.windows.net/cdnsydney /Destkey:J/LFwf3m4iZPWLJ7JlLZ2VSr0lg7pn66GSz2wpKEezcG5ndOx5kawSfJWbVuUysPY7biuG1lluU8FXNS18F0Ng== /S
+
+
+c:\Windows\System32>az account list-locations --query [*].[displayName,name] --out table
+Column1              Column2
+-------------------  ------------------
+East Asia            eastasia
+Southeast Asia       southeastasia
+Central US           centralus
+East US              eastus
+East US 2            eastus2
+West US              westus
+North Central US     northcentralus
+South Central US     southcentralus
+North Europe         northeurope
+West Europe          westeurope
+Japan West           japanwest
+Japan East           japaneast
+Brazil South         brazilsouth
+Australia East       australiaeast
+Australia Southeast  australiasoutheast
+South India          southindia
+Central India        centralindia
+West India           westindia
+Canada Central       canadacentral
+Canada East          canadaeast
+UK South             uksouth
+UK West              ukwest
+West Central US      westcentralus
+West US 2            westus2
+Korea Central        koreacentral
+Korea South          koreasouth
+France Central       francecentral
+France South         francesouth
+Australia Central    australiacentral
+Australia Central 2  australiacentral2
+South Africa North   southafricanorth
+South Africa West    southafricawest
+
+az storage account create -g "demo-prod-rg" -n tthstrgac2 --https-only true --kind StorageV2 --sku Standard_LRS -l southindia --access-tier Hot
+
+az storage account check-name --name tthstrgac2
+c:\Windows\System32>az storage account list -g "demo-prod-rg" --query [*].{Name:name,Location:location,SKU:sku.name,Kind:kind} --out table
+Name              Location    SKU           Kind
+----------------  ----------  ------------  -----------
+tthstrgac2        southindia  Standard_LRS  StorageV2
+demostrgactth1    southindia  Standard_LRS  StorageV2
+tthstrgac1        southindia  Standard_LRS  BlobStorage
+demoprodstrgacct  southindia  Standard_LRS  StorageV2
+
+az vm create --name testvm03 -g demo-vnet-rg --location  centralus --admin-username "testuser01" --admin-password Welcome@1234 -z 1 --computer-name "aztestvm03" --image  --nsg "demo-rg-vm-ubuntu-nsg" --os-disk-name testvmosdsk01 --os-disk-size-gb 70--public-ip-address testvm03PUBIP --public-ip-address-allocation dynamic --size Standard_B2ms --tags "location=centralus" --subnet vnetsub01 --vnet demovnet01 --private-ipaddress "192.168.0.7"
+
+
+ResourceGroup    PowerState    PublicIpAddress    Fqdns    PrivateIpAddress    MacAddress         Location    Zones
+---------------  ------------  -----------------  -------  ------------------  -----------------  ----------  -------
+vmtest-rg        VM running    52.189.120.11               10.0.0.4            00-0D-3A-91-BA-42  centralus   1
