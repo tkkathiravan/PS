@@ -182,3 +182,6 @@ kathi@KSH-PC MINGW64 /e/code/projects/PS (master)
 POINT TO REMEMBER
 
 WHEN A FILE IS MODIFIED LOCALLY - USE git add . to add stage the change  and the use git commit to confirm the change.
+
+
+NEW CHNAGES MADE LOCALLY
